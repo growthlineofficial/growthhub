@@ -72,21 +72,45 @@
 
         .profile-wrap {
             position: relative;
-            width: 118px;
-            height: 118px;
+            width: 130px;
+            height: 130px;
             margin: 0 auto 18px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        .profile-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(56, 189, 248, 0.45);
+            animation: profilePulse 2.2s ease-out infinite;
+        }
+
+        .profile-ring.r1 {
+            inset: 0;
+            animation-delay: 0s;
+        }
+
+        .profile-ring.r2 {
+            inset: -8px;
+            border-color: rgba(125, 211, 252, 0.3);
+            animation-delay: 0.7s;
+        }
+
+        .profile-ring.r3 {
+            inset: -16px;
+            border-color: rgba(14, 165, 233, 0.2);
+            animation-delay: 1.4s;
+        }
+
         .profile-spinner {
             position: absolute;
-            inset: 0;
+            inset: 6px;
             border-radius: 50%;
             background: conic-gradient(#7dd3fc, #38bdf8, #0284c7, #0ea5e9, #7dd3fc);
             animation: spinBorder 2.4s linear infinite;
-            box-shadow: 0 0 22px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 28px rgba(56, 189, 248, 0.55);
         }
 
         .profile-spinner::after {
@@ -98,17 +122,28 @@
         }
 
         .profile {
-            width: 104px;
-            height: 104px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
             position: relative;
             z-index: 2;
             border: 3px solid #061018;
+            animation: profileGlow 2.4s ease-in-out infinite;
         }
 
         @keyframes spinBorder {
             to { transform: rotate(360deg); }
+        }
+
+        @keyframes profilePulse {
+            0% { transform: scale(0.92); opacity: 0.85; }
+            100% { transform: scale(1.18); opacity: 0; }
+        }
+
+        @keyframes profileGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.35); }
+            50% { box-shadow: 0 0 18px 4px rgba(56, 189, 248, 0.45); }
         }
 
         h1 {
@@ -126,28 +161,36 @@
             margin-bottom: 16px;
         }
 
-        .points {
+        .features {
             list-style: none;
             text-align: left;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 14px;
             margin: 0 0 22px;
             padding: 0 4px;
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.88);
         }
 
-        .points li {
+        .features li {
             display: flex;
-            align-items: flex-start;
-            gap: 8px;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
         }
 
-        .points i {
+        .features li .emoji {
+            margin-left: auto;
+            font-size: 15px;
+            line-height: 1;
+        }
+
+        .features i {
+            width: 22px;
+            text-align: center;
+            font-size: 15px;
             color: #38bdf8;
-            margin-top: 3px;
-            font-size: 12px;
         }
 
         .timer {
@@ -170,7 +213,7 @@
             gap: 8px;
             width: 100%;
             padding: 14px 18px;
-            border-radius: 8px;
+            border-radius: 999px;
             overflow: hidden;
             background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
             border: 1.5px solid rgba(255, 255, 255, 0.85);
@@ -223,6 +266,9 @@
             <div class="badge">Best Tennis Analysis</div>
 
             <div class="profile-wrap">
+                <span class="profile-ring r1"></span>
+                <span class="profile-ring r2"></span>
+                <span class="profile-ring r3"></span>
                 <span class="profile-spinner"></span>
                 <img src="tennis-1.jpg" class="profile" alt="Tennis Info 365">
             </div>
@@ -231,16 +277,15 @@
             <p class="content">
                 Best tennis analysis — daily match insights, player form & court strategies delivered straight to your Telegram. Sharp. Clear. Reliable.
             </p>
-            <ul class="points">
-                <li><i class="fa-solid fa-check"></i> In-depth tennis match analysis</li>
-                <li><i class="fa-solid fa-check"></i> Player form & ranking insights</li>
-                <li><i class="fa-solid fa-check"></i> Pre-match tips & live updates</li>
-                <li><i class="fa-solid fa-check"></i> Clean tennis knowledge, zero spam</li>
+            <ul class="features">
+                <li><i class="fa-solid fa-trophy"></i> Daily free tennis predictions & analysis <span class="emoji">🎾</span></li>
+                <li><i class="fa-solid fa-fire"></i> High accuracy session reports <span class="emoji">🔥</span></li>
+                <li><i class="fa-solid fa-star"></i> Verified tennis strategies <span class="emoji">⚡</span></li>
             </ul>
 
             <a class="btn" href="https://t.me/+ave0RVUnK0k4NTll" target="_blank" rel="noopener noreferrer">
                 <i class="fab fa-telegram-plane tg-icon"></i>
-                <span>Join Telegram Channel</span>
+                <span>Join Our Channel</span>
             </a>
 
             <div class="timer">
