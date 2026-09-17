@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Info 365</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Meta Pixel Code -->
+
+<!-- End Meta Pixel Code -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background:
+                radial-gradient(ellipse 65% 50% at 70% 15%, rgba(56, 189, 248, 0.2) 0%, transparent 55%),
+                radial-gradient(ellipse 55% 45% at 15% 90%, rgba(14, 165, 233, 0.12) 0%, transparent 50%),
+                linear-gradient(170deg, #061018 0%, #0a1a2e 50%, #030810 100%);
+            color: #fff;
+            padding: 40px 16px;
+            overflow-x: hidden;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card {
+            width: 100%;
+            padding: 28px 24px 26px;
+            border-radius: 16px;
+            background: rgba(8, 24, 40, 0.85);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(56, 189, 248, 0.32);
+            box-shadow:
+                0 0 40px rgba(14, 165, 233, 0.14),
+                0 20px 50px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 4px;
+            background: rgba(14, 165, 233, 0.15);
+            border-left: 3px solid #38bdf8;
+            color: #7dd3fc;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .profile-wrap {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid rgba(56, 189, 248, 0.45);
+            animation: profilePulse 2.2s ease-out infinite;
+        }
+
+        .profile-ring.r1 {
+            inset: 0;
+            animation-delay: 0s;
+        }
+
+        .profile-ring.r2 {
+            inset: -8px;
+            border-color: rgba(125, 211, 252, 0.3);
+            animation-delay: 0.7s;
+        }
+
+        .profile-ring.r3 {
+            inset: -16px;
+            border-color: rgba(14, 165, 233, 0.2);
+            animation-delay: 1.4s;
+        }
+
+        .profile-spinner {
+            position: absolute;
+            inset: 6px;
+            border-radius: 50%;
+            background: conic-gradient(#7dd3fc, #38bdf8, #0284c7, #0ea5e9, #7dd3fc);
+            animation: spinBorder 2.4s linear infinite;
+            box-shadow: 0 0 28px rgba(56, 189, 248, 0.55);
+        }
+
+        .profile-spinner::after {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: #061018;
+        }
+
+        .profile {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+            border: 3px solid #061018;
+            animation: profileGlow 2.4s ease-in-out infinite;
+        }
+
+        @keyframes spinBorder {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes profilePulse {
+            0% { transform: scale(0.92); opacity: 0.85; }
+            100% { transform: scale(1.18); opacity: 0; }
+        }
+
+        @keyframes profileGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.35); }
+            50% { box-shadow: 0 0 18px 4px rgba(56, 189, 248, 0.45); }
+        }
+
+        h1 {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
+            margin-bottom: 14px;
+        }
+
+        .content {
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 16px;
+        }
+
+        .features {
+            list-style: none;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 0 0 22px;
+            padding: 0 4px;
+        }
+
+        .features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .features li .emoji {
+            margin-left: auto;
+            font-size: 15px;
+            line-height: 1;
+        }
+
+        .features i {
+            width: 22px;
+            text-align: center;
+            font-size: 15px;
+            color: #38bdf8;
+        }
+
+        .timer {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 18px;
+            color: #fff;
+        }
+
+        .timer span {
+            color: #38bdf8;
+            font-weight: 800;
+        }
+
+        .btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: 999px;
+            overflow: hidden;
+            background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.85);
+            color: #041018;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+            box-shadow: 0 0 24px rgba(56, 189, 248, 0.45);
+            animation: jump 1.35s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        .btn .tg-icon {
+            color: #041018;
+            font-size: 18px;
+        }
+
+        @keyframes jump {
+            0%, 55%, 100% { transform: translateY(0); }
+            20% { transform: translateY(-14px); }
+            35% { transform: translateY(0); }
+            45% { transform: translateY(-7px); }
+        }
+
+        @media (max-width: 420px) {
+            .card {
+                padding: 24px 18px 22px;
+            }
+
+            h1 {
+                font-size: 19px;
+            }
+
+            .btn {
+                font-size: 13px;
+                padding: 13px 14px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="wrap">
+
+        <div class="card">
+
+            <div class="badge">Best Tennis Analysis</div>
+
+            <div class="profile-wrap">
+                <span class="profile-ring r1"></span>
+                <span class="profile-ring r2"></span>
+                <span class="profile-ring r3"></span>
+                <span class="profile-spinner"></span>
+                <img src="tennis-1.jpg" class="profile" alt="Tennis Info 365">
+            </div>
+
+            <h1>Tennis Info 365</h1>
+            <p class="content">
+                Best tennis analysis — daily match insights, player form & court strategies delivered straight to your Telegram. Sharp. Clear. Reliable.
+            </p>
+            <ul class="features">
+                <li><i class="fa-solid fa-trophy"></i> Daily free tennis predictions & analysis <span class="emoji">🎾</span></li>
+                <li><i class="fa-solid fa-fire"></i> High accuracy session reports <span class="emoji">🔥</span></li>
+                <li><i class="fa-solid fa-star"></i> Verified tennis strategies <span class="emoji">⚡</span></li>
+            </ul>
+
+            <a class="btn" href="https://t.me/+ave0RVUnK0k4NTll" id="cta-btn">
+                <i class="fab fa-telegram-plane tg-icon"></i>
+                <span>Join Our Channel</span>
+            </a>
+<script>
+  document.getElementById("cta-btn")?.setAttribute("data-tgtrack-cta", "");
+</script>
+            <div class="timer">
+                FREE JOINING ENDS IN <span id="count">15</span>s
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        let time = 15;
+        let counter = document.getElementById("count");
+
+        setInterval(() => {
+            time--;
+            counter.innerText = time;
+            if (time <= 0) {
+                window.location.href = "https://t.me/+ave0RVUnK0k4NTll";
+            }
+        }, 1000);
+    </script>
+<script src="https://tgtrack.io/api/events/tracker.js?key=0f4183bfee232c53b4a76b3e0d0d7096&fetch_link=1"></script>
+</body>
+
+</html>
